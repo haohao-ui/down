@@ -28,7 +28,7 @@ description: 多平台视频/图集下载与博主分析（抖音、TikTok、小
 
 ## 常见问题
 
-- **工具不存在 / MCP 连接失败**：运行 `${CLAUDE_PLUGIN_ROOT}/scripts/ensure-viddl-mcp.sh` 安装二进制（会输出安装路径），然后让用户执行 `/mcp` 重连 viddl。
+- **工具不存在 / MCP 连接失败**：先确认二进制存在。Claude Code 插件内运行 `${CLAUDE_PLUGIN_ROOT}/scripts/ensure-viddl-mcp.sh`，其他环境（macOS / Linux）运行 `curl -fsSL https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/scripts/ensure-viddl-mcp.sh | bash`，脚本会输出二进制绝对路径。确认 MCP 配置里的 `command` 指向该路径后，重启或重连 MCP（Claude Code 为 `/mcp`）。完整安装说明见 https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/AGENT_INSTALL.md
 - **403 或快手 400002（滑块风控）**：匿名模式受限。让用户在 `~/.config/viddl-mcp/config.toml` 对应平台下填写 `cookie`（浏览器登录后从 DevTools → Network 复制请求头 `Cookie`），快手也可用环境变量 `VIDDL_COOKIE_KUAISHOU`。改完需 `/mcp` 重连。
 - **TikTok / YouTube 访问失败**：需要代理，在配置 `[tiktok] proxy` / `[youtube] proxy` 填写，如 `http://127.0.0.1:7890`。
 - **YouTube 提示缺少依赖**：`brew install yt-dlp ffmpeg`。

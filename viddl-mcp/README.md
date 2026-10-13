@@ -2,7 +2,23 @@
 
 多平台视频/图集下载 MCP 工具（抖音 / TikTok / 小红书 / YouTube / 快手）：无水印下载、账号/合集批量下载、博主画像。
 
-## Claude Code 插件（推荐）
+## 安装
+
+### 方式一：让 AI Agent 帮你安装（推荐）
+
+复制下面这段话发给你正在使用的 AI Agent（Claude Code、Codex、Gemini CLI、Cursor、OpenCode、Claude Desktop、Windsurf、VS Code Copilot 等均可）：
+
+```text
+帮我安装 viddl-mcp（多平台视频下载 MCP 工具）。
+请先读取安装指南，并严格按照其中与你（当前 Agent）对应的步骤执行：
+https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/AGENT_INSTALL.md
+如果无法直接访问网页，用 curl -fsSL 下载该文件后再阅读。
+安装完成后进行验证，告诉我结果以及还需要我做什么。
+```
+
+Agent 会自动完成：下载对应平台的二进制、注册 MCP server、安装使用指南 Skill，并提示重启生效。
+
+### 方式二：Claude Code 插件
 
 ```
 /plugin marketplace add haohao-ui/down
@@ -14,7 +30,7 @@
 - `VIDDL_MCP_VERSION=v0.1.0`：固定版本（默认最新）
 - `VIDDL_MCP_BIN=/path/to/viddl-mcp`：使用已有二进制
 
-## 命令行安装（macOS / Linux）
+### 方式三：命令行安装（macOS / Linux）
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/install.sh | bash
@@ -29,7 +45,7 @@ viddl-mcp -o ~/Desktop/videos -q original "<抖音分享链接>"
 
 Windows 请到 [Releases](https://github.com/haohao-ui/down/releases?q=viddl-mcp) 下载 `viddl-mcp-windows-x86_64.zip`。
 
-## 手动配置 MCP
+### 方式四：手动配置 MCP
 
 ```json
 {

@@ -13,4 +13,4 @@ haohao-ui 各项目的公开下载与 Claude Code 插件市场。
 
 | 项目 | 说明 | 安装 |
 |---|---|---|
-| [viddl-mcp](viddl-mcp/) | 多平台视频/图集下载 MCP（抖音 / TikTok / 小红书 / YouTube / 快手） | `/plugin install viddl@down` |
+| [viddl-mcp](viddl-mcp/) | 多平台视频/图集下载 MCP（抖音 / TikTok / 小红书 / YouTube / 快手） | 把 [Agent 安装提示词](viddl-mcp/README.md#方式一让-ai-agent-帮你安装推荐) 发给任意 AI Agent，或 `/plugin install viddl@down` |

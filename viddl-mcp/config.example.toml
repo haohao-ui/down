@@ -1,0 +1,49 @@
+# viddl-mcp 配置示例
+# 放置位置：~/.config/viddl-mcp/config.toml
+# 也可用 --config 参数或 VIDDL_CONFIG 环境变量指定其他路径
+
+output_dir = "~/Downloads/viddl"
+concurrency = 4
+api_delay_ms = [1500, 5000]   # API 请求间随机延迟区间（毫秒），下载不受限
+timeout_secs = 15
+max_retry = 3
+batch_limit = 50              # 批量下载默认条数上限
+max_size = 0                  # 超过该大小的文件跳过下载（字节），0 = 不限
+
+[download]
+name_format = "create_time type nickname desc"   # 可选键：id/desc/create_time/nickname/uid/mark/type
+folder_mode = false           # 图集/实况是否每条作品独立子目录
+music = false                 # 默认是否下载音乐
+static_cover = false          # 默认是否下载静态封面
+dynamic_cover = false         # 默认是否下载动态封面
+
+[douyin]
+# 浏览器登录抖音后，DevTools → Network → 任意请求 → Request Headers 里的 Cookie 整段粘贴
+# 留空则匿名模式（功能受限，受保护接口可能返回 403）
+cookie = ""
+proxy = ""                    # 如 "http://127.0.0.1:7890"
+
+[tiktok]
+cookie = ""
+proxy = ""                    # TikTok 需要代理才能访问
+
+[xiaohongshu]
+# 浏览器登录小红书后的 Cookie 整段粘贴（留空时将以移动端访客模式抓取，公开作品依然可免登录下载）
+cookie = ""
+proxy = ""
+
+[youtube]
+# 访问 YouTube 通常需要代理（如 Clash / Surge 提供的本地 HTTP/SOCKS 端口）
+proxy = ""                    # 如 "http://127.0.0.1:7890"
+cookie = ""                   # 可选，用于获取受限视频或更高画质权限
+yt_dlp_path = "yt-dlp"        # 可选，默认使用系统 PATH 中的 yt-dlp
+[kuaishou]
+# 浏览器登录快手后的 Cookie 整段粘贴（可选，留空时公开作品支持免登录下载）
+cookie = ""
+proxy = ""
+
+# 环境变量覆盖（优先级最高）：
+# VIDDL_COOKIE_DOUYIN / VIDDL_COOKIE_TIKTOK / VIDDL_COOKIE_XIAOHONGSHU / VIDDL_COOKIE_YOUTUBE / VIDDL_COOKIE_KUAISHOU
+# VIDDL_PROXY_DOUYIN / VIDDL_PROXY_TIKTOK / VIDDL_PROXY_XIAOHONGSHU / VIDDL_PROXY_YOUTUBE / VIDDL_PROXY_KUAISHOU
+# VIDDL_YT_DLP_PATH / VIDDL_FFMPEG_PATH
+# VIDDL_OUTPUT_DIR / VIDDL_LOG（日志级别，如 debug）
