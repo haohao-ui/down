@@ -8,5 +8,13 @@
   "homepage": "https://github.com/haohao-ui/viddl-mcp",
   "repository": "https://github.com/haohao-ui/viddl-mcp",
   "license": "Apache-2.0",
-  "keywords": ["douyin", "tiktok", "xiaohongshu", "youtube", "kuaishou", "download", "mcp"]
+  "keywords": [
+    "douyin",
+    "tiktok",
+    "xiaohongshu",
+    "youtube",
+    "kuaishou",
+    "download",
+    "mcp"
+  ]
 }
