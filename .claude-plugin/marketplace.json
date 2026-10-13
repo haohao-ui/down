@@ -1,0 +1,17 @@
+{
+  "name": "down",
+  "owner": {
+    "name": "haohao-ui"
+  },
+  "metadata": {
+    "description": "haohao-ui 的工具下载与 Claude Code 插件市场"
+  },
+  "plugins": [
+    {
+      "name": "viddl",
+      "source": "./viddl-mcp",
+      "description": "多平台视频/图集下载（抖音 / TikTok / 小红书 / YouTube / 快手）：无水印下载、批量下载、博主画像",
+      "version": "0.1.0"
+    }
+  ]
+}
