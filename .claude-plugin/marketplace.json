@@ -11,7 +11,7 @@
       "name": "viddl",
       "source": "./viddl-mcp",
       "description": "多平台视频/图集下载（抖音 / TikTok / 小红书 / YouTube / 快手）：无水印下载、批量下载、博主画像",
-      "version": "0.1.1"
+      "version": "0.1.2"
     }
   ]
 }
