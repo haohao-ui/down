@@ -35,9 +35,34 @@ asset_name() {
 
 # 发布仓库存放多个项目，tag 以项目名为前缀：viddl-mcp-vX.Y.Z 为固定版本，viddl-mcp-latest 始终指向最新版
 download_asset() {
-  local asset="$1" version="$2" dir="$3" tag
+  local asset="$1" version="$2" dir="$3" tag base
   tag="viddl-mcp-${version:-latest}"
-  curl -fsSL "https://github.com/$REPO/releases/download/$tag/$asset" -o "$dir/$asset"
+  base="https://github.com/$REPO/releases/download/$tag/$asset"
+  local curl_opts=(--proto '=https' --tlsv1.2 --retry 3 --connect-timeout 15 --max-time 600 -fsSL)
+  curl "${curl_opts[@]}" "$base" -o "$dir/$asset" || return 1
+  # 供应链完整性：必须同时下载并校验 .sha256，失败即中止。
+  curl "${curl_opts[@]}" "$base.sha256" -o "$dir/$asset.sha256" || {
+    log "无法下载校验文件: $base.sha256"
+    return 1
+  }
+  [ -s "$dir/$asset.sha256" ] || {
+    log "校验文件为空: $base.sha256"
+    return 1
+  }
+  (
+    cd "$dir"
+    if command -v sha256sum >/dev/null 2>&1; then
+      sha256sum -c "$asset.sha256"
+    elif command -v shasum >/dev/null 2>&1; then
+      shasum -a 256 -c "$asset.sha256"
+    else
+      log "未找到 sha256sum/shasum，无法校验下载完整性"
+      exit 1
+    fi
+  ) || {
+    log "SHA-256 校验失败: $asset"
+    return 1
+  }
 }
 
 install_bin() {

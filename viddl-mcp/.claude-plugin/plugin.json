@@ -1,7 +1,7 @@
 {
   "name": "viddl",
-  "version": "0.1.3",
-  "description": "多平台视频/图集下载（抖音 / TikTok / 小红书 / YouTube / 快手）：无水印下载、批量下载、博主画像",
+  "version": "0.1.4",
+  "description": "多平台视频/图集下载（抖音 / TikTok / 小红书 / YouTube / 快手 / 视频号）：无水印下载、批量下载、博主画像",
   "author": {
     "name": "haohao-ui"
   },
@@ -14,6 +14,8 @@
     "xiaohongshu",
     "youtube",
     "kuaishou",
+    "wechat",
+    "channels",
     "download",
     "mcp"
   ]

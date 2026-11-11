@@ -1,6 +1,6 @@
 # viddl-mcp 安装指南（给 AI Agent 阅读）
 
-你正在为用户安装 **viddl-mcp**：一个多平台视频/图集下载 MCP server（抖音 / TikTok / 小红书 / YouTube / 快手）。按下面步骤执行，每一步都实际运行命令并检查结果，不要只给用户讲步骤。
+你正在为用户安装 **viddl-mcp**：一个多平台视频/图集下载 MCP server（抖音 / TikTok / 小红书 / YouTube / 快手 / 视频号）。按下面步骤执行，每一步都实际运行命令并检查结果，不要只给用户讲步骤。
 
 ## 第 0 步：确认你是哪个 Agent
 
@@ -22,16 +22,11 @@ curl -fsSL https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/scrip
 **Windows（PowerShell）：**
 
 ```powershell
-$dir = "$env:USERPROFILE\.viddl-mcp\bin"
-New-Item -ItemType Directory -Force $dir | Out-Null
-$zip = "$env:TEMP\viddl-mcp.zip"
-Invoke-WebRequest "https://github.com/haohao-ui/down/releases/download/viddl-mcp-latest/viddl-mcp-windows-x86_64.zip" -OutFile $zip
-Expand-Archive $zip -DestinationPath "$env:TEMP\viddl-mcp" -Force
-Copy-Item "$env:TEMP\viddl-mcp\viddl-mcp.exe" $dir -Force
-Write-Output "$dir\viddl-mcp.exe"
+irm https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/install.ps1 | iex
+Write-Output "$env:USERPROFILE\.viddl-mcp\bin\viddl-mcp.exe"
 ```
 
-输出的路径即 `<BIN>`。写入 JSON 时反斜杠需转义为 `\\`，或改用正斜杠 `/`。
+输出的路径即 `<BIN>`（脚本会自动将该目录加入 Windows 用户 PATH 环境变量）。写入 JSON 时反斜杠需转义为 `\\`，或改用正斜杠 `/`。
 
 **验证：** 运行 `<BIN> --help`，能输出帮助即成功。
 
@@ -150,6 +145,7 @@ viddl-mcp 是标准 stdio MCP server：命令为 `<BIN>`，无参数，无需环
 - **配置文件** `~/.config/viddl-mcp/config.toml`（不存在则使用默认值）：
   - `output_dir = "~/Downloads/viddl"`：下载目录
   - `[douyin] cookie` / `[kuaishou] cookie` / `[xiaohongshu] cookie` / `[tiktok] cookie`：匿名访问被风控（403、快手 400002）时，填浏览器登录后请求头里的 Cookie
+  - `[wechat] yuanbao_cookie`：视频号下载必需，从 yuanbao.tencent.com 登录后复制 Cookie；仅元数据查询不需要
   - `[tiktok] proxy` / `[youtube] proxy`：如 `"http://127.0.0.1:7890"`，TikTok 必须配置代理
   - 完整模板：https://raw.githubusercontent.com/haohao-ui/down/main/viddl-mcp/config.example.toml（不可用时，发布包内也附带 `config.example.toml`）
 - **YouTube** 需要 `yt-dlp` 与 `ffmpeg`：macOS `brew install yt-dlp ffmpeg`，Linux 用系统包管理器，Windows `winget install yt-dlp.yt-dlp` 与 `winget install Gyan.FFmpeg`。
